@@ -76,6 +76,8 @@ jobs:
     needs: [lint-run, cypress-job, add-badge-job, deploy-job]
     if: ${{ always() }}
     steps:
+      - uses: actions/checkout@v2
+
       - uses: ./.github/actions/email
         with:
           server_address: smtp.gmail.com
@@ -99,6 +101,8 @@ jobs:
     continue-on-error: true
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - id: latest-tag
         run: echo "::set-output name=tag::$(git describe --tags --abbrev=0 --always)"
