@@ -24,14 +24,14 @@ jobs:
         uses: cypress-io/github-action@v2
         continue-on-error: true
         with:
+          start: npm start
+          build: npm run build
           config-file: cypress.json
 
       - run: echo ${{ steps.cypress-step.outcome }} > result.txt
 
       - uses: actions/upload-artifact@v2
         with:
-          start: npm start
-          build: npm run build
           name: cypress-outcome
           path: result.txt
 
@@ -54,11 +54,10 @@ jobs:
         with:
           cypress-outcome: ${{ steps.cypress-outcome.outputs.cypress_outcome }}
 
-      - uses: github-actions-x/commit@v2.8
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          files: README.md
-          commit-message: Update test badge
+          file_pattern: README.md
+          commit_message: Update test badge
 
   deploy-job:
     runs-on: ubuntu-latest
@@ -107,4 +106,4 @@ jobs:
           fetch-depth: 0
 
       - name: Bump minor version
-        uses: ./.github/action/custom
+        uses: ./.github/actions/custom
