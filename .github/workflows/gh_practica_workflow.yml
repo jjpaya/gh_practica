@@ -30,6 +30,8 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
+          start: npm start
+          build: npm run build
           name: cypress-outcome
           path: result.txt
 
@@ -104,17 +106,5 @@ jobs:
         with:
           fetch-depth: 0
 
-      - id: latest-tag
-        run: echo "::set-output name=tag::$(git describe --tags --abbrev=0 --always)"
-
-      - name: Incrementar version menor
-        id: bump-version
-        uses: christian-draeger/increment-semantic-version@1.0.2
-        with:
-          current-version: ${{ steps.latest-tag.outputs.tag }}
-          version-fragment: 'bug'
-
-      - uses: actions-ecosystem/action-push-tag@v1
-        with:
-          tag: ${{ steps.bump-version.outputs.next-version }}
-
+      - name: Bump minor version
+        uses: ./.github/action/custom

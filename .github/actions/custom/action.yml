@@ -1,0 +1,21 @@
+name: 'Bump minor version'
+description: 'Bump minor version and make a tag on the repo'
+runs:
+    using: 'composite'
+    steps:
+      - id: latest-tag
+        run: echo "::set-output name=tag::$(git describe --tags --abbrev=0 --always)"
+        shell: bash
+
+      - name: Incrementar version menor
+        id: bump-version
+        uses: christian-draeger/increment-semantic-version@1.0.2
+        with:
+          current-version: ${{ steps.latest-tag.outputs.tag }}
+          version-fragment: 'bug'
+
+      - uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.bump-version.outputs.next-version }}
+
+
