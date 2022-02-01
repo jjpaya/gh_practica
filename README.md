@@ -1,6 +1,6 @@
 # Práctica Jenkins
 
-Url del desplegamento vercel: https://gh-practica.vercel.app/
+Url del desplegamento vercel: https://jenkins-practica-jjpaya.vercel.app/
 
 ## ¿Qué es Jenkins?
 
