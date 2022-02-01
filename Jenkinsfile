@@ -11,6 +11,10 @@ pipeline {
 		string(name: 'reason', description: 'Razon de ejecucción', defaultValue: initiator?.shortDescription ?: 'Ejecucción automática')
 		string(name: 'notif_mail', description: 'Email a notificar', defaultValue: notifMailAddr)
 	}
+
+	triggers {
+		pollSCM('H/1 */3 * * *')
+	}
 	
 	environment {
 		NO_COLOR = '1'
@@ -83,31 +87,35 @@ pipeline {
 			}
 		}
 
-		stage('Notificacion') {
-			steps {
-				script {
-					try {
-						emailext(
-							subject: "Resultado de la construcción '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-							body: """
-								<p>Se ha ejecutado el job <a href='${env.BUILD_URL}'>'${env.JOB_NAME} [${env.BUILD_NUMBER}]'</a>, causado por: ${executor}, con la razon: ${reason}.</p>
-								<p>Resultados de la ejecucción:</p>
-								<br>
-								<p>- linter_job: ${env.S_LINT_OK}</p>
-								<p>- cypress_job: ${env.S_TEST_OK}</p>
-								<p>- add_badge_job: ${env.S_BADGE_OK}</p>
-								<p>- deploy_job: ${env.S_DEPLOY_OK}</p>
-							""",
-							to: notif_mail
-						)
-					} catch (Exception e) { }
+		stage('Final Parallel') {
+			parallel {
+				stage('Notificacion') {
+					steps {
+						script {
+							try {
+								emailext(
+									subject: "Resultado de la construcción '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+									body: """
+										<p>Se ha ejecutado el job <a href='${env.BUILD_URL}'>'${env.JOB_NAME} [${env.BUILD_NUMBER}]'</a>, causado por: ${executor}, con la razon: ${reason}.</p>
+										<p>Resultados de la ejecucción:</p>
+										<br>
+										<p>- linter_job: ${env.S_LINT_OK}</p>
+										<p>- cypress_job: ${env.S_TEST_OK}</p>
+										<p>- add_badge_job: ${env.S_BADGE_OK}</p>
+										<p>- deploy_job: ${env.S_DEPLOY_OK}</p>
+									""",
+									to: notif_mail
+								)
+							} catch (Exception e) { }
+						}
+					}
 				}
-			}
-		}
 
-		stage('Custom_stage') {
-			steps {
-				sh 'bash ./jenkinsScripts/bump.sh bug'
+				stage('Custom_stage') {
+					steps {
+						sh 'bash ./jenkinsScripts/bump.sh bug'
+					}
+				}
 			}
 		}
 	}
