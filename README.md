@@ -93,9 +93,19 @@ La pipeline se ejecuta y finaliza correctamente:
 
 ![s15](doc/15.png)
 
-Y se envía el correo de resultado:
+Y vemos que se envía el correo de resultado:
+
+![s16](doc/16.png)
+
+Se muestra el código de salida de cada proceso ejecutado en los stages. 0 significa que no ha habido ningún error.
+
+Puedes consultar el console output en [doc/console_output_24.md](doc/console_output_24.md)
+
+Si hacemos que los tests de cypress fallen, vemos los siguientes resultados:
 
 
+
+Cuando decida ejecutarse de nuevo por el commit que haya creado
 
 RESULTADO DE LOS ULTIMOS TESTS:
 ![cyp-badge](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)
