@@ -101,11 +101,31 @@ Se muestra el código de salida de cada proceso ejecutado en los stages. 0 signi
 
 Puedes consultar el console output en [doc/console_output_24.md](doc/console_output_24.md)
 
+Ahora podemos acceder a la aplicación desplegada:
+
+![s22](doc/22.png)
+
 Si hacemos que los tests de cypress fallen, vemos los siguientes resultados:
 
+![s17](doc/17.png)
 
+La pipeline no falla en sí, porque usa los estados de salida de los procesos en los siguientes stages.
 
-Cuando decida ejecutarse de nuevo por el commit que haya creado
+![s18](doc/18.png)
+
+Podemos comprobar que en el correo se nos ha notificado que el cypress ha tenido 11 errores, y el deploy_job no se ha ejecutado debido a que el resultado de cypress no ha sido 0.
+
+![s19](doc/19.png)
+
+Vemos que se ha creado y subido un commit (y un tag) con los cambios del readme. (La diferencia de hora es debido a que la zona horaria del contenedor de Jenkins no está bien configurada):
+
+![s20](doc/20.png)
+
+Puedes consultar el console output en [doc/console_output_25.md](doc/console_output_25.md)
+
+Cuando pollSCM decida ejecutarse de nuevo por el commit que ha creado se va a saltar la construcción por el indicador `[ci skip]` que hay en el mensaje del commit:
+
+![s21](doc/21.png)
 
 RESULTADO DE LOS ULTIMOS TESTS:
 ![cyp-badge](https://img.shields.io/badge/test-failure-red)
