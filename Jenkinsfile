@@ -90,10 +90,10 @@ pipeline {
 							<p>Se ha ejecutado el job <a href='${env.BUILD_URL}'>'${env.JOB_NAME} [${env.BUILD_NUMBER}]'</a>, causado por: ${executor}, con la razon: ${reason}.</p>
 							<p>Resultados de la ejecucción:</p>
 							<br>
-							<p>- linter_job: ${{ needs.lint-run.result }}</p>
-							<p>- cypress_job: ${{ needs.cypress-job.result }}</p>
-							<p>- add_badge_job: ${{ needs.add-badge-job.result }}</p>
-							<p>- deploy_job: ${{ needs.deploy-job.result }}</p>
+							<p>- linter_job: ${env.S_LINT_OK}</p>
+							<p>- cypress_job: ${env.S_TEST_OK}</p>
+							<p>- add_badge_job: ${env.S_BADGE_OK}</p>
+							<p>- deploy_job: ${env.S_DEPLOY_OK}</p>
 						""",
 						to: notif_mail
 					)
