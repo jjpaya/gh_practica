@@ -3,7 +3,7 @@
 OUTCOME="$1"
 LINK="https://img.shields.io/badge/test-failure-red"
 
-if [ "$OUTCOME" == "0" ]; then
+if [ $OUTCOME == 0 ]; then
   LINK="https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg"
 fi
 
