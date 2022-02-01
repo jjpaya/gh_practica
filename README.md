@@ -108,4 +108,4 @@ Si hacemos que los tests de cypress fallen, vemos los siguientes resultados:
 Cuando decida ejecutarse de nuevo por el commit que haya creado
 
 RESULTADO DE LOS ULTIMOS TESTS:
-![cyp-badge](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)
+![cyp-badge](https://img.shields.io/badge/test-failure-red)
