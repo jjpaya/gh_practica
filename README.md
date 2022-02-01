@@ -1,6 +1,5 @@
 # Github Actions Práctica
 
-![cyp-badge](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)
 
 Url del desplegamento vercel: https://gh-practica.vercel.app/
 
@@ -242,3 +241,7 @@ En vercel podemos ver que el proyecto se ha desplegado correctamente y que su es
 Y si entramos en el enlace del proyecto en vercel vemos la página desplegada:
 
 ![s34](doc/34.png)
+
+
+RESULTADO DE LOS ULTIMOS TESTS:
+![cyp-badge](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)
