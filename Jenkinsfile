@@ -101,7 +101,7 @@ pipeline {
 
 		stage('Custom_stage') {
 			steps {
-				sh 'sh ./jenkinsScripts/bump.sh minor'
+				sh 'bash ./jenkinsScripts/bump.sh minor'
 			}
 		}
 	}
