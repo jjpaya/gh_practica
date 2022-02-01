@@ -95,6 +95,7 @@ pipeline {
 							try {
 								emailext(
 									subject: "Resultado de la construcción '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+									mimeType: 'text/html',
 									body: """
 										<p>Se ha ejecutado el job <a href='${env.BUILD_URL}'>'${env.JOB_NAME} [${env.BUILD_NUMBER}]'</a>, causado por: ${executor}, con la razon: ${reason}.</p>
 										<p>Resultados de la ejecucción:</p>

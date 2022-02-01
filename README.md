@@ -47,6 +47,18 @@ Se han añadido las siguientes credenciales para que funcione la modificación d
 
 ![s6](doc/6.png)
 
+Se ha configurado el correo en el propio Jenkins:
+
+![s6](doc/6.1.png)
+
+![s6](doc/6.2.png)
+
+El email de prueba se envió correctamente:
+
+![s6](doc/6.3.png)
+
+![s6](doc/6.4.png)
+
 # Crear job en Jenkins
 
 ![s7](doc/7.png)
@@ -80,6 +92,8 @@ Vemos que los valores por defecto de los parámetros son los correctos. El email
 La pipeline se ejecuta y finaliza correctamente:
 
 ![s15](doc/15.png)
+
+Y se envía el correo de resultado:
 
 
 
