@@ -86,4 +86,4 @@ bump() {
 newtag="$(bump "$1")"
 
 git tag -a "${newtag}" -m "Bump $1 version"
-git push origin "HEAD:${newtag}"
+git push --tags origin "${newtag}"
