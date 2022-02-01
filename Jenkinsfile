@@ -68,7 +68,9 @@ pipeline {
 		stage('Deploy_to_Vercel') {
 			steps {
 				script {
-					if (env.S_TEST_OK == "0") {
+					env.S_DEPLOY_OK = "1"
+
+					if (env.S_LINT_OK == "0" && env.S_TEST_OK == "0") {
 						withCredentials([
 							string(credentialsId: 'vercel_token', variable: 'VC_TOKEN'),
 							string(credentialsId: 'vercel_org_id', variable: 'VERCEL_ORG_ID'),
