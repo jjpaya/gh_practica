@@ -2,9 +2,7 @@ import hudson.model.User;
 import hudson.tasks.Mailer;
 
 def initiator = (currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause') ?: currentBuild.getBuildCauses() ?: [])[0]
-def user = initiator?.userId ? User.get(initiator?.userId) : User.current()
-
-def notifMailAddr = user.getProperty(Mailer.UserProperty.class).getAddress()
+def notifMailAddr = (initiator?.userId ? User.get(initiator?.userId) : User.current()).getProperty(Mailer.UserProperty.class).getAddress()
 
 pipeline {
 	agent any
