@@ -19,17 +19,6 @@ pipeline {
 	}
 
 	stages {
-		stage('Run CI?') {
-			steps {
-				script {
-					if (sh(script: "git log -1 --pretty=%B | fgrep -i -e '[ci skip]'", returnStatus: true) == 0) {
-						currentBuild.result = 'NOT_BUILT'
-						error 'Aborting because commit message contains [ci skip]'
-					}
-				}
-			}
-		}
-
 		stage('Install') {
 			steps {
 				sh 'npm install'
