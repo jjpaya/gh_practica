@@ -60,7 +60,7 @@ pipeline {
 						sh 'sh ./jenkinsScripts/repo-config.sh "${GH_TOKEN}"'
 					}
 
-					env.S_BADGE_OK = sh(script: "sh ./jenkinsScripts/badge.sh '${S_TEST_OK}'", returnStatus: true)
+					env.S_BADGE_OK = sh(script: "bash ./jenkinsScripts/badge.sh '${S_TEST_OK}'", returnStatus: true)
 
 					if (env.S_BADGE_OK == "0") {
 						env.S_BADGE_OK = sh(script: "sh ./jenkinsScripts/commit.sh '${executor}' '${reason}'", returnStatus: true)
