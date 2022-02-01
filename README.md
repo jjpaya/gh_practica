@@ -244,4 +244,4 @@ Y si entramos en el enlace del proyecto en vercel vemos la página desplegada:
 
 
 RESULTADO DE LOS ULTIMOS TESTS:
-![cyp-badge](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)
+![cyp-badge](https://img.shields.io/badge/test-failure-red)
