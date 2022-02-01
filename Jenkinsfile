@@ -43,7 +43,7 @@ pipeline {
 		stage('Update_Readme') {
 			steps {
 				script {
-					withCredentials([usernameColonPassword(credentialsId: 'f7614c6d-5e20-45a5-997d-3e600bc6b87b', variable: 'GH_TOKEN')]) {
+					withCredentials([usernameColonPassword(credentialsId: 'github_token', variable: 'GH_TOKEN')]) {
 						sh 'sh ./jenkinsScripts/repo-config.sh "${GH_TOKEN}"'
 					}
 
