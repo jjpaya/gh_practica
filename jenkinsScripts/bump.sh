@@ -8,13 +8,13 @@ bump() {
   release_type="$1"
 
   if [[ "$prev_version" == "" ]]; then
-    echo "could not read previous version"; exit 1
+    echo "could not read previous version" 1>&2; exit 1
   fi
 
   possible_release_types="major feature bug alpha beta rc"
 
   if [[ ! ${possible_release_types[*]} =~ ${release_type} ]]; then
-    echo "valid argument: [ ${possible_release_types[*]} ]"; exit 1
+    echo "valid argument: [ ${possible_release_types[*]} ]" 1>&2; exit 1
   fi
 
   major=0; minor=0; patch=0; pre=""; preversion=0
@@ -28,7 +28,7 @@ bump() {
     pre="${BASH_REMATCH[5]}"
     preversion="${BASH_REMATCH[6]}"
   else
-    echo "previous version '$prev_version' is not a semantic version"
+    echo "previous version '$prev_version' is not a semantic version" 1>&2
     exit 1
   fi
 
