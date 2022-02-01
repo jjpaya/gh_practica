@@ -73,7 +73,7 @@ pipeline {
 						string(credentialsId: 'vercel_org_id', variable: 'VERCEL_ORG_ID'),
 						string(credentialsId: 'vercel_proj_id', variable: 'VERCEL_PROJECT_ID')
 					]) {
-						env.S_DEPLOY_OK = sh(script: 'node ./node_modules/.bin/vercel --production --token=${VC_TOKEN}', returnStatus: true)
+						env.S_DEPLOY_OK = sh(script: 'node ./node_modules/.bin/vercel --prod --scope=jjpaya --token=${VC_TOKEN}', returnStatus: true)
 					}
 				}
 			}
